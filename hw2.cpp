@@ -142,3 +142,4 @@ int main(void)
     }      
     return 0; 
 }
+/*心得放於commits*/
