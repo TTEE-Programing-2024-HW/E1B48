@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<conio.h>
 int main(void)
 {
     printf("版權所有，翻印必究\n");
@@ -25,13 +26,53 @@ int main(void)
             printf("按ENTER進入下一步");
             getchar();
             system("cls");
-        while (1)
+            while (1)
             {
                 printf("---------------------------\n"); /*主選單*/ 
                 printf("|   a. 畫出直角三角形     |\n");
                 printf("|   b. 顯示乘法表         |\n");
                 printf("|   c. 結束               |\n");
                 printf("---------------------------\n");
+            
+                printf("請輸入:");
+                char ch;
+                scanf(" %c", &ch);
+                
+                switch(ch)
+                {
+                    case 'A':	/*題一*/ 
+                    case 'a':
+                    {
+                        char ch1;
+                        system("cls");
+                        printf("輸入一個A到N之間的字元: ");
+                        scanf(" %c", &ch1);
+                        while(ch1 < 'a' || ch1 > 'n' )
+                        {
+                            printf("輸入錯誤\n");
+                            printf("輸入一個A到N之間的字元: ");
+                            scanf(" %c", &ch1);
+                            system("cls");
+                        }
+                        ch1=(ch1>='a' && ch1<='z') ?ch1-('a'-'A'):ch1;
+                                    
+                        int num=ch1-'A'+1;
+                        for(int i=1; i<= num; i++) 
+                        {
+                            for(int j=1; j<=i; j++) 
+                            {
+                                printf("%c ",'a'+ j-1);
+                            }
+                            printf("\n");
+                        }
+                        printf("按任意鍵繼續...");
+                        getch();
+                        system("cls");
+                        break;
+                    } 
+                    
+                }       
+            
             }
         }  
             
