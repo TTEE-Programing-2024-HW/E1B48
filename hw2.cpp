@@ -131,6 +131,12 @@ int main(void)
             }
         }  
             
-    }       
+    } 
+    if (times == 3) /*輸錯三次*/ 
+    {
+        system("cls");
+        printf("錯誤次數已到三 程式結束\a");
+        return 0;
+    }      
     return 0; 
 }
