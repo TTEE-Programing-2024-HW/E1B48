@@ -70,6 +70,34 @@ int main(void)
                         system("cls");
                         break;
                     } 
+                    case 'B':/*題二*/ 
+                    case 'b':
+                    {
+                        int num1;
+                        system("cls");
+                        printf("請輸入1到9之間的整數: ");
+                        scanf("%d", &num1);
+                        while(num1< 1 || num1 > 9) 
+                        {
+                            system("cls");
+                            printf("輸入錯誤\n");
+                            printf("請輸入1到9之間的整數:");
+                            scanf(" %d", &num1);
+                            system("cls");
+                        }
+                        for(int i=1;i<=num1;++i) 
+                        {
+                            for(int j=1;j<=num1;++j) 
+                            {
+                                printf("%d*%d=%d\t",i ,j ,i*j);
+                            }
+                            printf("\n");
+                        }
+                        printf("按任意鍵繼續...");
+                        getch();
+                        system("cls");
+                        break;	  	
+                    }
                     
                 }       
             
