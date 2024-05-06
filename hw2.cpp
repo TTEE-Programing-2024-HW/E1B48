@@ -123,7 +123,9 @@ int main(void)
                             break;
                         }
                     }
-                    
+                    default :/*不符合上述三種*/ 
+                        printf("輸入不在範圍內\n\a");
+                        system("cls");
                 }       
             
             }
