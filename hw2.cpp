@@ -20,16 +20,20 @@ int main(void)
             printf("密碼錯誤 再試一次\n");
             times++;
         } 
-
-
-
-
-
-
-
-
-
-
-
+        else /*密碼正確*/ 
+        {
+            printf("按ENTER進入下一步");
+            getchar();
+            system("cls");
+        }  
+            while (1)
+            {
+                printf("---------------------------\n"); /*主選單*/ 
+                printf("|   a. 畫出直角三角形     |\n");
+                printf("|   b. 顯示乘法表         |\n");
+                printf("|   c. 結束               |\n");
+                printf("---------------------------\n");
+            }
+    }       
     return 0; 
 }
