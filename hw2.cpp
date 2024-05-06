@@ -25,8 +25,7 @@ int main(void)
             printf("按ENTER進入下一步");
             getchar();
             system("cls");
-        }  
-            while (1)
+        while (1)
             {
                 printf("---------------------------\n"); /*主選單*/ 
                 printf("|   a. 畫出直角三角形     |\n");
@@ -34,6 +33,8 @@ int main(void)
                 printf("|   c. 結束               |\n");
                 printf("---------------------------\n");
             }
+        }  
+            
     }       
     return 0; 
 }
