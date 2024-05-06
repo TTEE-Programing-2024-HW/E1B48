@@ -112,6 +112,7 @@ int main(void)
                         else if(ch2 == 'N' || ch2 == 'n') 
                         {
                             printf("程式結束\n");
+                            system("pause");
                             return 0;
                         } 
                         else 
@@ -125,7 +126,8 @@ int main(void)
                     }
                     default :/*不符合上述三種*/ 
                         printf("輸入不在範圍內\n\a");
-                        system("cls");
+                        system("pause");
+                        return 0;
                 }       
             
             }
