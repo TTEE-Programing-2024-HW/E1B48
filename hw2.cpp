@@ -98,6 +98,31 @@ int main(void)
                         system("cls");
                         break;	  	
                     }
+                    case 'C':/*題三*/ 
+                    case 'c':
+                    {
+                        char ch2;
+                        printf("Continue? (y/n): ");
+                        scanf(" %c", &ch2);
+                        if(ch2 == 'Y' || ch2 == 'y') 
+                        {
+                            system("cls");
+                            break;
+                        } 
+                        else if(ch2 == 'N' || ch2 == 'n') 
+                        {
+                            printf("程式結束\n");
+                            return 0;
+                        } 
+                        else 
+                        {
+                            printf("輸入錯誤 請輸入y或n\n");
+                            printf("按任何鍵繼續");
+                            getch();
+                            system("cls");
+                            break;
+                        }
+                    }
                     
                 }       
             
