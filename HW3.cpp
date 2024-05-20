@@ -50,6 +50,110 @@ void display_seat_map(char seat_map[ROWS][COLS])
     getchar();
 }
 
+void select_seats(char seat_map[ROWS][COLS], int num_seats) 
+{
+    int row, col, direction, found = 0;
+
+    srand(time(NULL));
+
+    while (!found) 
+	{
+        row = rand() % ROWS;
+        col = rand() % COLS;
+        direction = rand() % 2;
+
+        if (direction == 0 && col + num_seats <= COLS) 
+		{
+            found = 1;
+            for (int i = 0; i < num_seats; i++) 
+			{
+                if (seat_map[row][col + i] != '-') 
+				{
+                    found = 0;
+                    break;
+                }
+            }
+            if (found) 
+			{
+                for (int i = 0; i < num_seats; i++) 
+				{
+                    seat_map[row][col + i] = '@';
+                }
+            }
+        } 
+		else if (direction == 1 && row + 1 < ROWS && col + 1 < COLS) 
+		{
+            found = 1;
+            if (seat_map[row][col] != '-' || seat_map[row][col+1] != '-' || seat_map[row+1][col] != '-' || seat_map[row+1][col+1] != '-') 
+			{
+                found = 0;
+            }
+            if (found) 
+			{
+                seat_map[row][col] = '@';
+                seat_map[row][col+1] = '@';
+                seat_map[row+1][col] = '@';
+                seat_map[row+1][col+1] = '@';
+            }
+        }
+    }
+}
+
+void record_selected_seats(char seat_map[ROWS][COLS], char user_map[ROWS][COLS]);
+void ask_and_select_seats(char seat_map[ROWS][COLS]) 
+{
+    int num_seats;
+    char input;
+    char temp_map[ROWS][COLS]; 
+
+    
+    for (int i = 0; i < ROWS; i++) 
+    {
+        for (int j = 0; j < COLS; j++) 
+        {
+            temp_map[i][j] = seat_map[i][j];
+        }
+    }
+
+    while (1) 
+    {
+        printf("需要幾個座位?(1-4): ");
+        scanf("%d", &num_seats);
+        getchar();
+
+        if (num_seats < 1 || num_seats > 4) 
+        {
+            printf("座位選擇錯誤 請重試\n"); 
+        } 
+        else 
+        {
+            
+            if (num_seats < 4) {
+                select_seats(temp_map, num_seats);
+            } else {
+                select_seats(temp_map, 2);
+                select_seats(temp_map, 2);
+            }
+            
+            break;
+        }
+    }
+
+    system("cls");    
+	display_seat_map(temp_map);
+
+    printf("是否滿意現在座位?(y/n): ");
+    input = getchar();
+    getchar();
+
+    if (input == 'y' || input == 'Y') 
+	{
+        
+        record_selected_seats(seat_map, temp_map);
+        system("cls");
+    }
+}
+
 int main(void)
 { 
     printf("版權所有，翻印必究\n");
