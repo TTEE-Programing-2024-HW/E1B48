@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
+#include <time.h>
 
-/*從此開始主程式*/ 
 int main(void)
 { 
     printf("版權所有，翻印必究\n");
@@ -30,7 +30,7 @@ int main(void)
             getchar();
             system("cls");
 
-         
+            
             while (1)
             {
                 printf("-------------------------\n"); /*主選單*/ 
@@ -48,13 +48,13 @@ int main(void)
                     case 'A':	/*題一*/ 
                     case 'a':
                     {
-                        
+                         
                     }
            
                     case 'B':	/*題二*/ 
                     case 'b':
                     {
-                       
+                        
                     }
 
                     case 'C':	/*題三*/ 
