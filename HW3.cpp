@@ -1,20 +1,24 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
 #include <time.h>
+
 #define ROWS 9
 #define COLS 9
 #define RESERVED_COUNT 10
 
+/*Function to generate the seat map with random reserved seats*/
  void generate_seat_map(char seat_map[ROWS][COLS]) 
 {
      int reserved_seats = 0, row, col;
      srand(time(NULL));
-
+    
+     /*Initialize all seats to '-'*/
      for (int i = 0; i < ROWS; i++)
         for (int j = 0; j < COLS; j++)
             seat_map[i][j] ='-';
-  
+     
+     /*Randomly reserve seats until RESERVED_COUNT is reached*/
      while (reserved_seats < RESERVED_COUNT) 
 	{
          row = rand() % ROWS;
@@ -27,6 +31,7 @@
     }
 }
 
+ /* Function to display the seat map*/
  void display_seat_map(char seat_map[ROWS][COLS]) 
 {
 
@@ -50,6 +55,7 @@
      getchar();
 }
 
+ /* Function to select seats automatically based on the number of seats required*/
  void select_seats(char seat_map[ROWS][COLS], int num_seats) 
 {
      int row, col, direction, found = 0;
@@ -62,6 +68,7 @@
         col = rand() % COLS;
         direction = rand() % 2;
 
+        /* Horizontal selection*/
          if (direction == 0 && col + num_seats <= COLS) 
 		{
              found = 1;
@@ -81,6 +88,7 @@
                 }
             }
         } 
+        /*2x2 selection*/
 		 else if (direction == 1 && row + 1 < ROWS && col + 1 < COLS) 
 		{
              found = 1;
@@ -100,13 +108,14 @@
 }
 
  void record_selected_seats(char seat_map[ROWS][COLS], char user_map[ROWS][COLS]);
+ /* Function to handle the automatic seat selection process*/
  void ask_and_select_seats(char seat_map[ROWS][COLS]) 
 {
      int num_seats;
      char input;
      char temp_map[ROWS][COLS]; 
 
-    
+     /* Copy the current seat map to a temporary map*/
      for (int i = 0; i < ROWS; i++) 
     {
          for (int j = 0; j < COLS; j++) 
@@ -117,13 +126,13 @@
 
      while (1) 
     {
-         printf("需要幾個座位?(1-4): ");
+         printf("How many seats do you need? (1-4): ");
          scanf("%d", &num_seats);
          getchar();
 
          if (num_seats < 1 || num_seats > 4) 
         {
-            printf("座位選擇錯誤 請重試\n"); 
+            printf("Invalid number of seats. Please try again.\n"); 
         } 
          else 
         {
@@ -145,7 +154,7 @@
      system("cls");    
 	 display_seat_map(temp_map);
 
-     printf("是否滿意現在座位?(y/n): ");
+     printf("Are you satisfied with the current seats? (y/n): ");
      input = getchar();
      getchar();
 
@@ -156,18 +165,19 @@
     }
 }
 
+ /* Function to allow the user to choose seats manually*/
  void choose_seats(char seat_map[ROWS][COLS]) 
 {
      char input[10];
      int row, col;
 
-     printf("目前的座位表:\n");
+     printf("Current seat map:\n");
      printf("\n");
      display_seat_map(seat_map);
 
      while (1) 
     {
-        printf("輸入你的選擇(例如 1-2或2-9)，若已選擇完畢 請按'q'以退出: ");
+        printf("Enter your choice (e.g., 1-2 or 2-9). Press 'q' to quit: ");
         fgets(input, sizeof(input), stdin);
 
          if (input[0] == 'q') 
@@ -175,13 +185,13 @@
 
          if (sscanf(input, "%d-%d", &row, &col) != 2 || row < 1 || row > ROWS || col < 1 || col > COLS) 
         {
-            printf("座位不存在 請重選\n");
+            printf("Invalid seat. Please choose again.\n");
             continue;
         }
 
          if (seat_map[row-1][col-1] == '*' || seat_map[row-1][col-1] == '@') 
         {
-            printf("座位已被預定 請重選\n");
+            printf("Seat already reserved. Please choose again.\n");
             continue;
         }
 
@@ -189,7 +199,7 @@
     }
 }
 
-
+ /* Function to record the selected seats into the main seat map*/
  void record_selected_seats(char seat_map[ROWS][COLS], char user_map[ROWS][COLS]) 
 {
      for (int i = 0; i < ROWS; i++) 
@@ -203,13 +213,12 @@
         }
     }
 }
-
-
+ /*Function to manage the seat selection menu*/
  void seat_selection_menu(char seat_map[ROWS][COLS]) 
 {
      char user_map[ROWS][COLS]; 
 
-    
+     /* Copy the current seat map to a user map*/
      for (int i = 0; i < ROWS; i++) 
 	{
          for (int j = 0; j < COLS; j++) 
@@ -222,8 +231,8 @@
     choose_seats(user_map);
 
     system("cls");    
-	printf("已記錄位置\n");
-	printf("按下3次ENTER回到主選單\n");
+	printf("Seats have been recorded.\n");
+	printf("Press ENTER three times to return to the main menu.\n");
     display_seat_map(user_map);
     getchar(); 
     record_selected_seats(seat_map, user_map);
@@ -231,28 +240,28 @@
 
  int main(void)
 { 
-     printf("版權所有，翻印必究\n");
+     printf("All rights reserved.\n");
      for(int i=1;i<20;i++) 
     {
-        printf("版權所有，翻印必究\n");  
+        printf("All rights reserved.\n");  
     }
-     printf("按ENTER進入下一步");
+     printf("Press ENTER to proceed");
      getchar();  
      system("cls");
 
      int password, times = 0; 
      while (times < 3)  
     {
-         printf("密碼:");
+         printf("Password: ");
          scanf("%d", &password);
          if (password != 2024) 
         {
-            printf("密碼錯誤 再試一次\n");
+            printf("Incorrect password. Try again.\n");
             times++;
         } 
          else  
         {
-             printf("按ENTER進入下一步");
+             printf("Press ENTER to proceed");
              getchar();
              system("cls");
 
@@ -267,7 +276,7 @@
                  printf("| d. Exit               |\n");
                  printf("-------------------------\n");
                
-                 printf("請輸入:");
+                 printf("Please enter: ");
                  scanf(" %c", &ch);
                 
                  switch(ch)
@@ -313,13 +322,13 @@
                         } 
                          else if(ch2 == 'N' || ch2 == 'n') 
                         {
-                            printf("程式結束\n");
+                            printf("Program ended\n");
                             return 0;
                         } 
                          else 
                         {
-                            printf("輸入錯誤 請輸入y或n\n");
-                            printf("按任何鍵繼續");
+                            printf("Invalid input. Please enter y or n\n");
+                            printf("Press any key to continue");
                             getch();
                             system("cls");
                             break;
@@ -335,7 +344,7 @@
 	 if (times == 3) 
     {
         system("cls");
-        printf("錯誤次數已到三 程式結束\a");
+        printf("Exceeded the maximum number of attempts. Program ended\a");
         return 0;
     }
      return 0;
