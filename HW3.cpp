@@ -2,6 +2,53 @@
 #include<stdlib.h>
 #include<conio.h>
 #include <time.h>
+#define ROWS 9
+#define COLS 9
+#define RESERVED_COUNT 10
+
+void generate_seat_map(char seat_map[ROWS][COLS]) 
+{
+    int reserved_seats = 0, row, col;
+    srand(time(NULL));
+
+    for (int i = 0; i < ROWS; i++)
+        for (int j = 0; j < COLS; j++)
+            seat_map[i][j] ='-';
+  
+    while (reserved_seats < RESERVED_COUNT) 
+	{
+        row = rand() % ROWS;
+        col = rand() % COLS;
+        if (seat_map[row][col] !='*') 
+		{
+            seat_map[row][col] ='*';
+            reserved_seats++;
+        }
+    }
+}
+
+void display_seat_map(char seat_map[ROWS][COLS]) 
+{
+
+    printf("  ");
+    for (int j = 0; j < COLS; j++) 
+	{
+        printf("%d", j + 1);
+    }
+    printf("\n");
+
+    for (int i = 0; i < ROWS; i++) 
+	{
+        printf("%d ", i + 1);
+        for (int j = 0; j < COLS; j++) 
+		{
+            printf("%c", seat_map[i][j]);
+        }
+        printf("\n");
+    }
+    getchar();
+    getchar();
+}
 
 int main(void)
 { 
