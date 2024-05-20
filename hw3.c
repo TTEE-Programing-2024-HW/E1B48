@@ -1,12 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
 #include <time.h>
 
 int main(void)
 { 
     printf("版權所有，翻印必究\n");
-    for(int i=1;i<20;i++) /*個人風格畫面*/
+    for(int i=1;i<20;i++) 
     {
         printf("版權所有，翻印必究\n");  
     }
@@ -14,8 +14,8 @@ int main(void)
     getchar();  
     system("cls");
 
-    int password, times = 0; /*輸入密碼*/ 
-    while (times < 3) /*當錯誤次數小於3時，所執行的結果*/ 
+    int password, times = 0; 
+    while (times < 3)  
     {
         printf("密碼:");
         scanf("%d", &password);
@@ -24,16 +24,16 @@ int main(void)
             printf("密碼錯誤 再試一次\n");
             times++;
         } 
-        else /*密碼正確*/ 
+        else  
         {
             printf("按ENTER進入下一步");
             getchar();
             system("cls");
 
-            
+            char  ch;
             while (1)
             {
-                printf("-------------------------\n"); /*主選單*/ 
+                printf("-------------------------\n"); 
                 printf("| a. Available seats    |\n");
                 printf("| b. Arrange for you    |\n");
                 printf("| c. Choose by yourself |\n");
@@ -45,25 +45,25 @@ int main(void)
                 
                 switch(ch)
                 {
-                    case 'A':	/*題一*/ 
+                    case 'A':	
                     case 'a':
                     {
-                         
+                        
                     }
            
-                    case 'B':	/*題二*/ 
+                    case 'B':	 
                     case 'b':
                     {
                         
                     }
 
-                    case 'C':	/*題三*/ 
+                    case 'C':
                     case 'c':
                     {
                         
                     }
 
-                    case 'D':	/*題四*/ 
+                    case 'D':	 
                     case 'd':
                     {
                         char ch2;
@@ -88,14 +88,14 @@ int main(void)
                             break;
                         } 
                     }
-                    default :/*不符合上述三種*/ 
+                    default : 
                         printf("\a");
                         system("cls");
                 } 
             }
         }
     }
-	if (times == 3) /*輸錯三次*/ 
+	if (times == 3) 
     {
         system("cls");
         printf("錯誤次數已到三 程式結束\a");
