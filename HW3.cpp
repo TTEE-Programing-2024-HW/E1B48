@@ -273,19 +273,28 @@ int main(void)
                     case 'A':	
                     case 'a':
                     {
-                        
+                        system("cls");
+                        display_seat_map(seat_map);
+                        system("cls");
+						continue;
                     }
            
                     case 'B':	 
                     case 'b':
                     {
-                       
+                       system("cls");
+                        ask_and_select_seats(seat_map);
+                        system("cls");
+						continue;
                     }   
 
                     case 'C':
                     case 'c':
                     {
-                        
+                        system("cls");
+                        seat_selection_menu(seat_map);
+                        system("cls");
+						continue;
                     }
 
                     case 'D':	 
