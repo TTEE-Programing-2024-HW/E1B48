@@ -154,6 +154,79 @@ void ask_and_select_seats(char seat_map[ROWS][COLS])
     }
 }
 
+void choose_seats(char seat_map[ROWS][COLS]) 
+{
+    char input[10];
+    int row, col;
+
+    printf("目前的座位表:\n");
+    printf("\n");
+    display_seat_map(seat_map);
+
+    while (1) 
+    {
+        printf("輸入你的選擇(例如 1-2或2-9)，若已選擇完畢 請按'q'以退出: ");
+        fgets(input, sizeof(input), stdin);
+
+        if (input[0] == 'q') 
+            break;
+
+        if (sscanf(input, "%d-%d", &row, &col) != 2 || row < 1 || row > ROWS || col < 1 || col > COLS) 
+        {
+            printf("座位不存在 請重選\n");
+            continue;
+        }
+
+        if (seat_map[row-1][col-1] == '*' || seat_map[row-1][col-1] == '@') 
+        {
+            printf("座位已被預定 請重選\n");
+            continue;
+        }
+
+        seat_map[row-1][col-1] = '@';
+    }
+}
+
+
+void record_selected_seats(char seat_map[ROWS][COLS], char user_map[ROWS][COLS]) 
+{
+    for (int i = 0; i < ROWS; i++) 
+	{
+        for (int j = 0; j < COLS; j++) 
+		{
+            if (user_map[i][j] == '@') 
+			{
+                seat_map[i][j] = '*';
+            }
+        }
+    }
+}
+
+
+void seat_selection_menu(char seat_map[ROWS][COLS]) 
+{
+    char user_map[ROWS][COLS]; 
+
+    
+    for (int i = 0; i < ROWS; i++) 
+	{
+        for (int j = 0; j < COLS; j++) 
+		{
+            user_map[i][j] = seat_map[i][j];
+        }
+    }
+
+    system("cls");
+    choose_seats(user_map);
+
+    system("cls");    
+	printf("已記錄位置\n");
+	printf("按下3次ENTER回到主選單\n");
+    display_seat_map(user_map);
+    getchar(); 
+    record_selected_seats(seat_map, user_map);
+}
+
 int main(void)
 { 
     printf("版權所有，翻印必究\n");
@@ -181,7 +254,8 @@ int main(void)
             getchar();
             system("cls");
 
-            char ch; 
+            char seat_map[ROWS][COLS],ch; 
+            generate_seat_map(seat_map);
             while (1)
             {
                 printf("-------------------------\n"); 
