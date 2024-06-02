@@ -17,6 +17,8 @@ void inputStudents(int n, Student students[]);
 int getIntegerInput(const char* prompt, int min, int max);
 void displayStudents(int n, Student students[]);
 void printError(const char* message);
+float calculateAverage(int math, int physics, int english);
+void searchStudent(int n, Student students[]);
 
 int main(void)
 { 
