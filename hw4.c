@@ -41,6 +41,8 @@ int main(void)
             system("cls");
 
             char ch;
+            int n = 0;
+            Student students[10];
             while (1)
             {
                 printf("------------------------------------\n"); 
@@ -59,7 +61,10 @@ int main(void)
                     case 'A':	
                     case 'a':
                     { 
-                         
+                        system("cls");
+                        n = getIntegerInput("請輸入學生數目(5~10): ", 5, 10);
+                        inputStudents(n, students);
+                        break;  
                     }
            
                     case 'B':	 
@@ -120,3 +125,38 @@ int main(void)
     }
     return 0;
 } 
+void printError(const char* message) 
+{
+    printf("錯誤: %s\n", message);
+}
+
+void inputStudents(int n, Student students[]) 
+{
+    for (int i = 0; i < n; i++) {
+        printf("輸入第%d個學生資料:\n", i + 1);
+        printf("姓名: ");
+        scanf("%s", students[i].name);
+        students[i].id= getIntegerInput("學號(6位整數): ", 100000, 999999);
+        students[i].math = getIntegerInput("數學成績(0~100): ", 0, 100);
+        students[i].physics = getIntegerInput("物理成績(0~100): ", 0, 100);
+        students[i].english = getIntegerInput("英文成績(0~100): ", 0, 100);
+        students[i].average = calculateAverage(students[i].math, students[i].physics, students[i].english);
+    }
+}
+
+int getIntegerInput(const char* prompt, int min, int max) 
+{
+    int value;
+    while (1) {
+        printf("%s", prompt);
+        if (scanf("%d", &value) != 1) {
+            printError("輸入無效。請輸入一個整數。");
+            fflush(stdin); 
+        } else if (value < min || value > max) {
+            printError("數值超出範圍。請重新輸入。");
+        } else {
+            break;
+        }
+    }
+    return value;
+}
