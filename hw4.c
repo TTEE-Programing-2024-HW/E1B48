@@ -13,6 +13,11 @@ typedef struct
     float average;
 } Student;
 
+void inputStudents(int n, Student students[]);
+int getIntegerInput(const char* prompt, int min, int max);
+void displayStudents(int n, Student students[]);
+void printError(const char* message);
+
 int main(void)
 { 
     printf("版權所有，翻印必究\n");
