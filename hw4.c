@@ -150,7 +150,7 @@ int main(void)
     {
         /*密碼輸錯三次*/
         system("cls");
-        printf("錯誤次數已到三 程式結束\a"); ㄆ
+        printf("錯誤次數已到三 程式結束\a");
         return 0;
     }
     return 0;
@@ -243,3 +243,4 @@ void sortStudents(int n, Student students[])
                 students[i].name, students[i].id, students[i].average);
     }
 }
+/*心得於commit上*/
