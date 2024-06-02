@@ -84,7 +84,10 @@ int main(void)
                     case 'C':
                     case 'c':
                     {
-                        
+                        system("cls");
+                        searchStudent(n, students);
+                        getchar();
+                        break;
                     }
                     
                     case 'D':
@@ -179,5 +182,25 @@ void displayStudents(int n, Student students[])
     for (int i = 0; i < n; i++) {
         printf("姓名: %s, 學號: %s, 數學: %d, 物理: %d, 英文: %d, 平均成績: %.1f\n", 
                 students[i].name, students[i].id, students[i].math, students[i].physics, students[i].english, students[i].average);
+    }
+}
+
+void searchStudent(int n, Student students[])
+{
+    char searchName[50];
+    printf("請輸入要搜尋的學生姓名: ");
+    scanf("%s", searchName);
+    
+    int found = 0;
+    for (int i = 0; i < n; i++) {
+        if (strcmp(students[i].name, searchName) == 0) {
+            printf("姓名: %s, 學號: %d, 數學: %d, 物理: %d, 英文: %d, 平均成績: %.1f\n", 
+                    students[i].name, students[i].id, students[i].math, students[i].physics, students[i].english, students[i].average);
+            found = 1;
+            break;
+        }
+    }
+    if (!found) {
+        printf("資料不存在。\n");
     }
 }
