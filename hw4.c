@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <string.h>
 
+/*定義結構*/
 typedef struct 
 {
     char name[50];
@@ -13,6 +14,7 @@ typedef struct
     float average;
 } Student;
 
+/*函數宣告*/
 void inputStudents(int n, Student students[]);
 int getIntegerInput(const char* prompt, int min, int max);
 void displayStudents(int n, Student students[]);
@@ -23,6 +25,7 @@ void sortStudents(int n, Student students[]);
 
 int main(void)
 { 
+    /*個人風格畫面*/
     printf("版權所有，翻印必究\n");
     for(int i=1;i<20;i++) 
     {
@@ -32,6 +35,7 @@ int main(void)
     getchar();  
     system("cls");
 
+    /*密碼驗證*/
     int password, times = 0; 
     while (times < 3)  
     {
@@ -39,11 +43,13 @@ int main(void)
         scanf("%d", &password);
         if (password != 2024) 
         {
+            /*失敗*/
             printf("密碼錯誤 再試一次\n");
             times++;
         } 
         else  
         {
+            /*成功*/
             printf("按ENTER進入下一步");
             getchar();
             system("cls");
@@ -53,6 +59,7 @@ int main(void)
             Student students[10];
             while (1)
             {
+                /*主畫面*/
                 printf("------------------------------------\n"); 
                 printf("|   a. Enter student grades        |\n");
                 printf("|   b. Display student grades      |\n");
@@ -69,6 +76,7 @@ int main(void)
                     case 'A':	
                     case 'a':
                     { 
+                        /*輸入資料*/
                         system("cls");
                         n = getIntegerInput("請輸入學生數目(5~10): ", 5, 10);
                         inputStudents(n, students);
@@ -78,6 +86,7 @@ int main(void)
                     case 'B':	 
                     case 'b':
                     {
+                        /*顯示資料*/
                         system("cls");
                         displayStudents(n, students);
                         getchar();
@@ -87,6 +96,7 @@ int main(void)
                     case 'C':
                     case 'c':
                     {
+                        /*搜索特定資料*/
                         system("cls");
                         searchStudent(n, students);
                         getchar();
@@ -96,6 +106,7 @@ int main(void)
                     case 'D':
                     case 'd':
                     {
+                        /*排序資料*/
                     	system("cls");
                         sortStudents(n, students);
                         getchar();
@@ -105,6 +116,7 @@ int main(void)
                     case 'E':	 
                     case 'e':
                     {
+                        /*退出*/
                         char ch2;
                         printf("確定離開? (y/n): ");
                         scanf(" %c", &ch2);
@@ -136,22 +148,24 @@ int main(void)
     }
 	if (times == 3) 
     {
+        /*密碼輸錯三次*/
         system("cls");
-        printf("錯誤次數已到三 程式結束\a");
+        printf("錯誤次數已到三 程式結束\a"); ㄆ
         return 0;
     }
     return 0;
 } 
+/*提示句*/
 void printError(const char* message) 
 {
     printf("錯誤: %s\n", message);
 }
-
+/*計算平均*/
 float calculateAverage(int math, int physics, int english)
 {
     return (math + physics + english) / 3.0;
 }
-
+/*輸入所有資料*/
 void inputStudents(int n, Student students[]) 
 {
     for (int i = 0; i < n; i++) {
@@ -165,7 +179,7 @@ void inputStudents(int n, Student students[])
         students[i].average = calculateAverage(students[i].math, students[i].physics, students[i].english);
     }
 }
-
+/*驗證*/
 int getIntegerInput(const char* prompt, int min, int max) 
 {
     int value;
@@ -182,7 +196,7 @@ int getIntegerInput(const char* prompt, int min, int max)
     }
     return value;
 }
-
+/*顯示資料*/
 void displayStudents(int n, Student students[]) 
 {
     for (int i = 0; i < n; i++) {
@@ -190,7 +204,7 @@ void displayStudents(int n, Student students[])
                 students[i].name, students[i].id, students[i].math, students[i].physics, students[i].english, students[i].average);
     }
 }
-
+/*搜索功能*/
 void searchStudent(int n, Student students[])
 {
     char searchName[50];
@@ -210,7 +224,7 @@ void searchStudent(int n, Student students[])
         printf("資料不存在。\n");
     }
 }
-
+/*排序*/
 void sortStudents(int n, Student students[]) 
 {
     Student temp;
