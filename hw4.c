@@ -19,6 +19,7 @@ void displayStudents(int n, Student students[]);
 void printError(const char* message);
 float calculateAverage(int math, int physics, int english);
 void searchStudent(int n, Student students[]);
+void sortStudents(int n, Student students[]);
 
 int main(void)
 { 
@@ -95,7 +96,10 @@ int main(void)
                     case 'D':
                     case 'd':
                     {
-                    	
+                    	system("cls");
+                        sortStudents(n, students);
+                        getchar();
+                        break;
                     }
                     
                     case 'E':	 
@@ -204,5 +208,24 @@ void searchStudent(int n, Student students[])
     }
     if (!found) {
         printf("資料不存在。\n");
+    }
+}
+
+void sortStudents(int n, Student students[]) 
+{
+    Student temp;
+    for (int i = 0; i < n-1; i++) {
+        for (int j = i+1; j < n; j++) {
+            if (students[i].average < students[j].average) {
+                temp = students[i];
+                students[i] = students[j];
+                students[j] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("姓名: %s, 學號: %d, 平均成績: %.1f\n", 
+                students[i].name, students[i].id, students[i].average);
     }
 }
