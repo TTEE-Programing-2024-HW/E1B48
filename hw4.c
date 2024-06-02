@@ -70,7 +70,10 @@ int main(void)
                     case 'B':	 
                     case 'b':
                     {
-                        
+                        system("cls");
+                        displayStudents(n, students);
+                        getchar();
+                        break; 
                     }
 
                     case 'C':
@@ -159,4 +162,12 @@ int getIntegerInput(const char* prompt, int min, int max)
         }
     }
     return value;
+}
+
+void displayStudents(int n, Student students[]) 
+{
+    for (int i = 0; i < n; i++) {
+        printf("姓名: %s, 學號: %s, 數學: %d, 物理: %d, 英文: %d, 平均成績: %.1f\n", 
+                students[i].name, students[i].id, students[i].math, students[i].physics, students[i].english, students[i].average);
+    }
 }
