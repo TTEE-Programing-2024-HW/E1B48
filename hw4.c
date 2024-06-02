@@ -138,6 +138,11 @@ void printError(const char* message)
     printf("錯誤: %s\n", message);
 }
 
+float calculateAverage(int math, int physics, int english)
+{
+    return (math + physics + english) / 3.0;
+}
+
 void inputStudents(int n, Student students[]) 
 {
     for (int i = 0; i < n; i++) {
